@@ -1,0 +1,63 @@
+<html>
+  <head>
+      <title>Test Results</title>
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js" djConfig="gfxRenderer:'svg,silverlight,canvas,vml', parseOnLoad: true, debugAtAllCosts: true"></script>
+      <script type="text/javascript" src="dojox.gfx.plugins.Blur.js"></script>
+      <script type="text/javascript">
+          dojo.require("dojox.gfx");
+          dojo.addOnLoad(function() {
+              var node = dojo.byId("surface");
+              var surface = dojox.gfx.createSurface(node, 800, 305);
+
+		surface.createRect({x: 25, y: 25, width: 100, height: 50, r: 5}).setFill("yellow").setStroke({color: "blue", width: 2});
+		surface.createCircle({cx: 200, cy: 50, r: 25}).setFill("yellow").setStroke({color: "blue", width: 2});
+		surface.createEllipse({cx: 320, cy: 50, rx: 50, ry: 25}).setFill("yellow").setStroke({color: "blue", width: 2});
+		surface.createLine({x1: 425, y1: 25, x2: 540, y2: 75}).setStroke({color: "blue", width: 2});
+		surface.createPolyline([{ x: 600, y: 25}, { x: 720, y: 40 }, { x: 680, y: 72 }, { x: 630, y: 80 }, {x: 600, y: 25}]).setFill("yellow").setStroke({color: "blue", width: 2});
+		surface.createPath({path: "M 25 150 L 125 150 L 75 225 z"}).setFill("yellow").setStroke({color: "blue", width: 2});
+		surface.createImage({x: 175, y: 100, width: 200, height: 200, src: "http://i38.tinypic.com/rw3x8n.jpg"});
+		surface.createText({x: 585, y: 225, text: "Example Text.", align: "middle", rotated: false, kerning: true}).setFont({family: "Arial", size: "40pt", weight: "normal"}).setFill("yellow").setStroke({color: "blue", width: 2});
+
+              var node = dojo.byId("surface2");
+              var surface2 = dojox.gfx.createSurface(node, 800, 305);
+
+		surface2.createRect({x: 25, y: 25, width: 100, height: 50, r: 5}).setFill("yellow").setStroke({color: "blue", width: 2}).setBlur({size:2.5, sizeType:"stdDeviation"});
+		surface2.createCircle({cx: 200, cy: 50, r: 25}).setFill("yellow").setStroke({color: "blue", width: 2}).setBlur();
+		surface2.createEllipse({cx: 320, cy: 50, rx: 50, ry: 25}).setFill("yellow").setStroke({color: "blue", width: 2}).setBlur();
+		surface2.createLine({x1: 425, y1: 25, x2: 540, y2: 75}).setStroke({color: "blue", width: 2}).setBlur();
+		surface2.createPolyline([{ x: 600, y: 25}, { x: 720, y: 40 }, { x: 680, y: 72 }, { x: 630, y: 80 }, {x: 600, y: 25}]).setFill("yellow").setStroke({color: "blue", width: 2}).setBlur();
+		surface2.createPath({path: "M 25 150 L 125 150 L 75 225 z"}).setFill("yellow").setStroke({color: "blue", width: 2}).setBlur();
+		surface2.createImage({x: 175, y: 100, width: 200, height: 200, src: "http://i38.tinypic.com/rw3x8n.jpg"}).setBlur();
+		surface2.createText({x: 585, y: 225, text: "Example Text.", align: "middle", rotated: false, kerning: true}).setFont({family: "Arial", size: "40pt", weight: "normal"}).setFill("yellow").setStroke({color: "blue", width: 2}).setBlur();
+
+		var browserInfo = "unknown browser type";
+		if( dojo.isIE ){
+		   browserInfo = "Internet Explorer " + dojo.isIE;
+		} else if ( dojo.isFF ) {
+		   browserInfo = "Firefox " + dojo.isFF;
+		} else if ( dojo.isOpera ) {
+		   browserInfo = "Opera " + dojo.isOpera;
+		} else if ( dojo.isSafari ) {
+		   browserInfo = "Safari " + dojo.isSafari;
+		} else if ( dojo.isKhtml ) {
+		   browserInfo = "Konqueror " + dojo.isKhtml;
+		} else if ( dojo.isChrome ) {
+		   browserInfo = "Chrome " + dojo.isChrome;
+		} else if ( dojo.isWebKit ) {
+		   browserInfo = "WebKit " + dojo.isWebKit;
+		} else if ( dojo.isMozilla ) {
+		   browserInfo = "Mozilla " + dojo.isMozilla;
+		}
+
+		dojo.byId("blurHeader").innerHTML = "Shadow (using " + dojox.gfx.renderer + " on " + browserInfo + ")";
+
+          });
+      </script>
+  </head>
+  <body>
+      <h3>Original:</h3>
+      <div style="width:800;height:305;border:solid 1px" id="surface"></div>
+      <h3 id="blurHeader">loading...</h3>
+      <div style="width:800;height:305;border:solid 1px" id="surface2"></div>
+  </body>
+</html>
